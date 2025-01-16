@@ -1,5 +1,5 @@
-import { Coordinates } from "@/api/types";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import type { Coordinates } from "@/api/types";
 
 interface GeolocationState {
   coordinates: Coordinates | null;
@@ -11,11 +11,11 @@ export function useGeolocation() {
   const [locationData, setLocationData] = useState<GeolocationState>({
     coordinates: null,
     error: null,
-    isLoading: false,
+    isLoading: true,
   });
 
   const getLocation = () => {
-    setLocationData(prev => ({ ...prev, isLoading: true, error: null }));
+    setLocationData((prev) => ({ ...prev, isLoading: true, error: null }));
 
     if (!navigator.geolocation) {
       setLocationData({
@@ -27,7 +27,7 @@ export function useGeolocation() {
     }
 
     navigator.geolocation.getCurrentPosition(
-      position => {
+      (position) => {
         setLocationData({
           coordinates: {
             lat: position.coords.latitude,
@@ -37,7 +37,7 @@ export function useGeolocation() {
           isLoading: false,
         });
       },
-      error => {
+      (error) => {
         let errorMessage: string;
 
         switch (error.code) {
@@ -76,6 +76,6 @@ export function useGeolocation() {
 
   return {
     ...locationData,
-    getLocation, // expose method to manually refresh location data
+    getLocation, // Expose method to manually refresh location
   };
 }
