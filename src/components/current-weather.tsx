@@ -1,18 +1,17 @@
-import { GeocodingResponse, WeatherData } from "@/api/types";
 import { Card, CardContent } from "./ui/card";
 import { ArrowDown, ArrowUp, Droplets, Wind } from "lucide-react";
+import type { WeatherData, GeocodingResponse } from "@/api/types";
 
 interface CurrentWeatherProps {
   data: WeatherData;
   locationName?: GeocodingResponse;
 }
 
-const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
+export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
   const {
     weather: [currentWeather],
-    main: { temp, feels_like, temp_min, temp_max, pressure, humidity },
-    wind: { speed, deg },
-    sys: { sunrise, sunset },
+    main: { temp, feels_like, temp_min, temp_max, humidity },
+    wind: { speed },
   } = data;
 
   // Format temperature
@@ -72,23 +71,8 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
                 <Wind className="h-4 w-4 text-blue-500" />
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium">Wind Speed</p>
-                  <p className="text-sm text-muted-foreground">
-                    {speed} m/s, {deg}°
-                  </p>
+                  <p className="text-sm text-muted-foreground">{speed} m/s</p>
                 </div>
-              </div>
-              <div>
-                <p className="text-sm font-medium">Sunrise</p>
-                <p className="text-sm text-muted-foreground">
-                  {new Date(sunrise * 1000).toLocaleTimeString()}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-sm font-medium">Sunset</p>
-                <p className="text-sm text-muted-foreground">
-                  {new Date(sunset * 1000).toLocaleTimeString()}
-                </p>
               </div>
             </div>
           </div>
@@ -111,5 +95,4 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
       </CardContent>
     </Card>
   );
-};
-export default CurrentWeather;
+}
