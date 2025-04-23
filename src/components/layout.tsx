@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from "react";
-import Header from "./header";
-
+import { Header } from "./header";
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div className=" bg-gradient-to-br from-background to-muted">

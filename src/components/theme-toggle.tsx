@@ -1,12 +1,8 @@
-import React from "react";
-import { useTheme } from "./context/theme-provider";
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "./context/theme-provider";
 
-const ThemeToggle = () => {
+export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-
-  console.log(theme);
-
   const isDark = theme === "dark";
 
   return (
@@ -16,9 +12,12 @@ const ThemeToggle = () => {
         isDark ? "rotate-180" : "rotate-0"
       }`}
     >
-      {isDark ? <Sun /> : <Moon />}
+      {isDark ? (
+        <Sun className="h-6 w-6 text-yellow-500 rotate-0 transition-all" />
+      ) : (
+        <Moon className="h-6 w-6 text-blue-500 rotate-0 transition-all" />
+      )}
+      <span className="sr-only">Toggle theme</span>
     </div>
   );
-};
-
-export default ThemeToggle;
+}
