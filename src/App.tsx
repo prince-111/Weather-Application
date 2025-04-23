@@ -1,11 +1,11 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Layout from "./components/layout";
 import { ThemeProvider } from "./components/context/theme-provider";
 import WeatherDashboard from "./pages/weather-dashboard";
-import CityPage from "./pages/city-page";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Layout from "./components/layout";
+import { CityPage } from "./pages/city-page";
 
 // Create a client
 const queryClient = new QueryClient({

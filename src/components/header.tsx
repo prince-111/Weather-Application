@@ -1,10 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "./context/theme-provider";
-import ThemeToggle from "./theme-toggle";
+import { CitySearch } from "./city-search";
+import { ThemeToggle } from "./theme-toggle";
+// import { useTheme } from "./context/theme-provider";
 
-const Header = () => {
-  const { theme } = useTheme();
+export function Header() {
+  // const { theme } = useTheme();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-2">
@@ -12,19 +12,17 @@ const Header = () => {
         <Link to={"/"}>
           {/* <img
             src={theme === "dark" ? "/logo.png" : "/logo2.png"}
-            alt="Klimate logo"
+            alt="Meteora"
             className="h-14"
           /> */}
-          logo
+          <h1 className="text-2xl font-bold font-serif">Meteora.</h1>
         </Link>
 
         <div className="flex gap-4">
-          {/* <CitySearch />*/}
+          <CitySearch />
           <ThemeToggle />
         </div>
       </div>
     </header>
   );
-};
-
-export default Header;
+}
